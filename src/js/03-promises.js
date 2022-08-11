@@ -24,7 +24,7 @@ const getValueForm = event => {
   timerMS = DELAY;
 
   setTimeout(() => {
-    rep(position, timerMS);
+    alertPromise(position, timerMS);
     timerInt = setInterval(() => {
       timerMS += STEP;
 
@@ -33,7 +33,7 @@ const getValueForm = event => {
       }
 
       position += 1;
-      rep(position, timerMS);
+      alertPromise(position, timerMS);
     }, STEP);
   }, DELAY);
 };
@@ -51,7 +51,7 @@ const amountInput = e => {
   AMOUNT = Number(e.target.value);
 };
 
-function rep(position, delay) {
+function alertPromise(position, delay) {
   createPromise(position, delay)
     .then(({ position, delay }) => {
       Notiflix.Notify.success(`✅ Fulfilled promise ${position} in ${delay}ms`);
