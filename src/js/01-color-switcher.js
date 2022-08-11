@@ -14,12 +14,10 @@ function handleClickStart() {
   onDisabled();
   refs.buttonsStop.style.backgroundColor = 'red';
 
-  setTimeout(() => {
+  document.body.style.background = getRandomHexColor();
+  runTime = setInterval(() => {
     document.body.style.background = getRandomHexColor();
-    runTime = setInterval(() => {
-      document.body.style.background = getRandomHexColor();
-    }, 1000);
-  }, 0);
+  }, 1000);
 }
 
 function handleStopTime() {

@@ -17,6 +17,7 @@ const refs = {
 let TIMERS = 0;
 let setIntervalId;
 const DATE_NOW = new Date();
+refs.button.disabled = true;
 
 flatpickr(refs.inputDate, {
   enableTime: true,
