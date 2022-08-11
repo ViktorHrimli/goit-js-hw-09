@@ -13,10 +13,10 @@ const refs = {
   minutes: document.querySelector('span[data-minutes]'),
   seconds: document.querySelector('span[data-seconds]'),
 };
-
-let TIMERS = 0;
-let setIntervalId;
+// CONST
+let TIMERS = null;
 const DATE_NOW = new Date();
+let setIntervalId;
 refs.button.disabled = true;
 
 flatpickr(refs.inputDate, {
