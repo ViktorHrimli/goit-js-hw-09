@@ -1,0 +1,64 @@
+body {
+  position: relative;
+}
+
+.conteiner {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, 50%);
+}
+.timer {
+  display: flex;
+  margin-top: 50px;
+  font-size: 24px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-weight: 600;
+  margin-left: 30px;
+  color: red;
+}
+
+.field:first-child {
+  margin-left: 0;
+}
+
+.flatpickr-input {
+  height: 30px;
+  padding: 15px;
+  border-radius: 5px;
+  margin-right: 15px;
+  outline: none;
+}
+
+button {
+  width: 60px;
+  height: 35px;
+  border-radius: 15px;
+  color: aliceblue;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  background-color: gray;
+}
+
+.succsses-button {
+  background-color: green;
+}
+
+.succsses-button:hover {
+  box-shadow: 0px 4px 4px rgba(2, 236, 33, 0.747);
+}
+
+.stop-button {
+  background-color: red;
+}
+
+.stop-button:hover {
+  box-shadow: 0px 4px 4px rgba(236, 2, 2, 0.747);
+}
