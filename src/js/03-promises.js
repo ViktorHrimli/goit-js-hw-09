@@ -1,55 +1,34 @@
 import Notiflix from 'notiflix';
 // import
-
-// Refs
 const refs = {
   form: document.querySelector('.form'),
-  delay: document.querySelector('input[name="delay"]'),
-  step: document.querySelector('input[name="step"]'),
-  amount: document.querySelector('input[name="amount"]'),
 };
-// CONSTANTS
-let DELAY = null;
-let STEP = null;
-let AMOUNT = null;
 let position = 1;
-let timerMS = null;
-let timerInt = null;
+let totalMS = null;
 
-// func
-const getValueForm = event => {
+function getValueForm(event) {
   event.preventDefault();
-  clearInterval(timerInt);
   position = 1;
-  timerMS = DELAY;
+  let { delay, step, amount } = event.currentTarget;
+
+  let dalayNum = Number(delay.value);
+  let stepNum = Number(step.value);
+  let amountNum = Number(amount.value);
 
   setTimeout(() => {
-    alertPromise(position, timerMS);
-    timerInt = setInterval(() => {
-      timerMS += STEP;
+    totalMS = dalayNum;
+    alertPromise(position, dalayNum);
+    const timerInt = setInterval(() => {
+      totalMS += stepNum;
 
-      if (position === AMOUNT - 1) {
+      if (position === amountNum - 1) {
         clearInterval(timerInt);
       }
-
       position += 1;
-      alertPromise(position, timerMS);
-    }, STEP);
-  }, DELAY);
-};
-
-const delayInput = e => {
-  DELAY = 0;
-  DELAY = Number(e.target.value);
-};
-const stepInput = e => {
-  STEP = 0;
-  STEP = Number(e.target.value);
-};
-const amountInput = e => {
-  AMOUNT = 0;
-  AMOUNT = Number(e.target.value);
-};
+      alertPromise(position, totalMS);
+    }, stepNum);
+  }, dalayNum);
+}
 
 function alertPromise(position, delay) {
   createPromise(position, delay)
@@ -60,7 +39,6 @@ function alertPromise(position, delay) {
       Notiflix.Notify.failure(`❌ Rejected promise ${position} in ${delay}ms`);
     });
 }
-
 // promis
 function createPromise(position, delay) {
   return new Promise((resolve, reject) => {
@@ -72,9 +50,4 @@ function createPromise(position, delay) {
     }
   });
 }
-
-// listener
-refs.delay.addEventListener('change', delayInput);
-refs.step.addEventListener('change', stepInput);
-refs.amount.addEventListener('change', amountInput);
 refs.form.addEventListener('submit', getValueForm);

@@ -26,6 +26,7 @@ flatpickr(refs.inputDate, {
   minuteIncrement: 1,
   onClose(selectedDates) {
     TIMERS = selectedDates[0].getTime() - DATE_NOW.getTime();
+    Math.round(TIMERS);
     handleRangeDate(selectedDates);
     convertMs(TIMERS);
   },
@@ -86,9 +87,9 @@ function onStart() {
     TIMERS -= 1000;
     const funcTime = convertMs(TIMERS);
     const { days, hours, minutes, seconds } = funcTime;
-
     console.log(`${days}:${hours}:${minutes}:${seconds}`);
     onGetTimeTimer(days, hours, minutes, seconds);
+    stopNullTimer(funcTime);
   }, 1000);
 }
 
@@ -114,7 +115,12 @@ function btnDisable() {
 function addLeadingZero(value) {
   return String(value).padStart(2, '0');
 }
-
+function stopNullTimer(time) {
+  const { days, hours, minutes, seconds } = time;
+  if (days === '00' && hours === '00' && minutes === '00' && seconds === '00') {
+    clearInterval(setIntervalId);
+  }
+}
 // listener
 refs.button.addEventListener('click', onStart);
 refs.buttonStop.addEventListener('click', onStop);
