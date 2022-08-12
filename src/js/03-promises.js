@@ -3,12 +3,11 @@ import Notiflix from 'notiflix';
 const refs = {
   form: document.querySelector('.form'),
 };
-let position = 1;
 let totalMS = null;
 
 function getValueForm(event) {
   event.preventDefault();
-  position = 1;
+  let position = 1;
   let { delay, step, amount } = event.currentTarget;
 
   let dalayNum = Number(delay.value);
